@@ -1,0 +1,44 @@
+------------------------
+Processing Peptide Lists
+------------------------
+
+Created by: Elizabeth Borden
+Last updated: 12/10/2020
+Purpose: This pipeline is designed to take a list of peptides and generate a list of prioritiation terms for each one that can then be used with my logistic regression model to get a prioritized list of peptides. 
+
+-----------
+Input files
+-----------
+
+Directory structure
+Dataset directory
+    Validated_All.txt
+    /HLAA2.1
+        HLAA2.1_peptides.in
+
+HLAA2.1_peptides.in contains peptide list in the format:
+>Peptide
+Peptide
+>Peptide
+Peptide
+etc. 
+
+Validated_Al.txt contains the validation results. Most of the formatting does not matter but column 2 needs to be the HLA type and column 5 needs to be the peptide and column 9 needs to be the validation results. If these columns are changed, just need to edit the column numbers in Prep_final_file.R and Prep_luksza_input.R.
+
+Config file should be in the following format with a line for each HLA type
+"all_samples": [
+"HLAA2.1"
+],
+
+
+"HLAA2.1":{
+"hla": ["HLA-A02:01"]
+}
+}
+
+-----
+Steps
+-----
+Run start_processing_peptides-snakemake.py
+Run join.sh (Note there is a lot of hard coded content in this one right now, so editing required)
+Run start_processing_peptides_part2-snakemake.py
